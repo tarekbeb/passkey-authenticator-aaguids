@@ -12,7 +12,9 @@
     "build:dev": "rollup --config --bundleConfigAsCjs --watch",
     "test": "NODE_ENV=test jest",
     "test:coverage": "NODE_ENV=test jest --coverage",
-    "test:watch": "NODE_ENV=test jest --watch"
+    "test:watch": "NODE_ENV=test jest --watch",
+    "tag:latest": "npm version patch",
+    "release:latest": "npm run tag:latest && npm run build && npm publish --access public"
   },
   "repository": {
     "type": "git",
