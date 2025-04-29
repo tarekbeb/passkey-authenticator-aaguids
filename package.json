@@ -1,0 +1,31 @@
+{
+  "name": "passkey-authenticator-aaguids",
+  "version": "1.0.0",
+  "description": "Looks up passkey authenticator names by AAGUID using the community list from passkeydeveloper/passkey-authenticator-aaguids. For display only.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "test": "test:cov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tarekbeb/passkey-authenticator-aaguids.git"
+  },
+  "keywords": [
+    "passkeys",
+    "webauthn",
+    "aaguid",
+    "AAGUID",
+    "Passkeys",
+    "Webauthn",
+    "Authentication",
+    "Authenticator",
+    "Passkey Authenticator"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tarekbeb/passkey-authenticator-aaguids/issues"
+  },
+  "homepage": "https://github.com/tarekbeb/passkey-authenticator-aaguids#readme"
+}
