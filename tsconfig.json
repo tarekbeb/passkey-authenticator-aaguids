@@ -1,0 +1,24 @@
+{
+  "preventAssignment": true,
+  "compilerOptions": {
+    "moduleResolution": "node", // use Node's module resolution algorithm, instead of the legacy TS one
+    "module": "esnext",
+    "lib": ["dom", "esnext"],
+    "baseUrl": "./",
+    "outDir": "./dist",
+    "sourceMap": true,
+    "declaration": true, // output .d.ts declaration files for consumers
+    "allowJs": true,
+    "importHelpers": true,
+    "strict": true, // stricter type-checking for stronger correctness. Recommended by TS
+    "noImplicitReturns": true, // linter checks for common issues
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
+    "esModuleInterop": true, // interop between ESM and CJS modules. Recommended by TS
+    "skipLibCheck": true, // significant perf increase by skipping checking .d.ts files, particularly those in node_modules. Recommended by TS
+    "forceConsistentCasingInFileNames": true, // error out if import and file system have a casing mismatch. Recommended by TS
+    "target": "es2015", // Ensure ES2015 or higher
+    "downlevelIteration": true, // Optional: Enable downlevel iteration for older targets
+    "resolveJsonModule": true, // Optional: Allow importing JSON files
+  }
+}

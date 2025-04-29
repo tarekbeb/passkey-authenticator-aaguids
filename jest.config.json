@@ -1,0 +1,13 @@
+{
+  "verbose": true,
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "transform": {
+    "^.+\\.(t|j)s$": ["ts-jest", { "tsconfig": "<rootDir>/tsconfig.json" }]
+  },
+  "modulePathIgnorePatterns": ["build", "dist", ".ignore"],
+  "coveragePathIgnorePatterns": ["node_modules", "build", "dist", "coverage", "tests"],
+  "coverageDirectory": "./coverage",
+  "collectCoverage": true
+}
