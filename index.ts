@@ -41,7 +41,7 @@ export function base64ToUint8Array(base64: string) {
  * @param {Uint8Array} aaguid - The 16 bytes representing the AAGUID.
  * @returns {string} The formatted UUID string.
  */
-export function formatAaguid(aaguid: Uint8Array): string {
+export function getAaguid(aaguid: Uint8Array): string {
   if (aaguid.length !== 16) {
     throw new Error("AAGUID must be 16 bytes.");
   }
@@ -79,21 +79,21 @@ export function findAuthenticatorById({ authenticatorId }: { authenticatorId: st
 
 export function getAuthenticator({ authenticatorData }: { authenticatorData: string }) {
   const aaguidBytesAuth = extractAaguid(authenticatorData);
-  const authenticatorId = formatAaguid(aaguidBytesAuth);
+  const authenticatorId = getAaguid(aaguidBytesAuth);
 
   return findAuthenticatorById({ authenticatorId });
 }
 
 export function getAuthenticatorName({ authenticatorData }: { authenticatorData: string }) {
   const aaguidBytesAuth = extractAaguid(authenticatorData);
-  const authenticatorId = formatAaguid(aaguidBytesAuth);
+  const authenticatorId = getAaguid(aaguidBytesAuth);
 
   return findAuthenticatorById({ authenticatorId })?.name;
 }
 
 export function getAuthenticatorId({ authenticatorData }: { authenticatorData: string }) {
   const aaguidBytesAuth = extractAaguid(authenticatorData);
-  const authenticatorId = formatAaguid(aaguidBytesAuth);
+  const authenticatorId = getAaguid(aaguidBytesAuth);
 
   return findAuthenticatorById({ authenticatorId })?.id;
 }

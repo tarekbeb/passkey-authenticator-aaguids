@@ -1,6 +1,6 @@
 import {
   extractAaguid,
-  formatAaguid,
+  getAaguid,
   base64UrlToBase64,
   base64ToUint8Array,
 } from './index'
@@ -29,21 +29,21 @@ describe("base64ToUint8Array", () => {
   });
 });
 
-describe("formatAaguid", () => {
+describe("getAaguid", () => {
   it("should format a 16-byte Uint8Array as a UUID", () => {
     const bytes = new Uint8Array([
       0x12, 0x34, 0x56, 0x78, 0x90, 0xab, 0xcd, 0xef, 0x01, 0x23, 0x45, 0x67,
       0x89, 0xab, 0xcd, 0xef,
     ]);
     const expectedUuid = "12345678-90ab-cdef-0123-456789abcdef";
-    expect(formatAaguid(bytes)).toBe(expectedUuid);
+    expect(getAaguid(bytes)).toBe(expectedUuid);
   });
 });
 
 describe("extractAaguid", () => {
   it("should extract AAGUID from valid authenticatorData", () => {
     const aaguid = extractAaguid(authenticatorDataBase64Url);
-    const formattedId = formatAaguid(aaguid);
+    const formattedId = getAaguid(aaguid);
 
     expect(formattedId).toEqual("fbfc3007-154e-4ecc-8c0b-6e020557d7bd");
   });
@@ -56,7 +56,7 @@ describe("extractAaguid", () => {
 
   it("should extract AAGUID from valid authenticatorData and find the authenticator", () => {
     const aaguidBytesAuth = extractAaguid(authenticatorDataBase64Url);
-    const authenticatorId = formatAaguid(aaguidBytesAuth);
+    const authenticatorId = getAaguid(aaguidBytesAuth);
 
     const authenticatorsList = [
       { id: "fbfc3007-154e-4ecc-8c0b-6e020557d7bd", name: "iCloud Keychain" },

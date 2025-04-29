@@ -23,3 +23,15 @@ This package directly utilizes the data and inherits the disclaimer from the `pa
 
 ```bash
 npm install your-package-name
+```
+
+## How to use
+
+```ts
+import {  getAuthenticator } from 'passkey-authenticator-aaguids';
+
+const exampleAuthenticatorData = "SZYN5YgOjGh0NBcPZHZgW4_krrmihjLHmVzzuoMdl2NdAAAAAPv8MAcVTk7MjAtuAgVX170AFBUCgIutOmnd-P3TTsakYoMM292opQECAyYgASFYIGTgM0IiDgO9AqTMSMT1Tdh1sHiL99qEZJ4cdk8vJAyDIlggolBgLLxO9I2q9GuYsa8kBThr8-iXpiO4mL2z_73-Th4"
+
+const authenticator = getAuthenticator({ authenticatorData: exampleAuthenticatorData});
+console.log(authenticator) // { id: 'fbfc3007-154e-4ecc-8c0b-6e020557d7bd', name: 'iCloud Keychain' }
+```
