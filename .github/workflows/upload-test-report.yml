@@ -1,0 +1,40 @@
+name: Upload coverage reports to Codecov
+on:
+  pull_request:
+    branches:
+      - alpha
+      - beta
+      - develop
+      - main
+jobs:
+  upload-test-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get branch name
+        id: branch_name
+        run: echo "branch=$(echo ${GITHUB_HEAD_REF#refs/heads/})" >>$GITHUB_OUTPUT
+
+      - name: Checkout ${{ steps.branch_name.outputs.branch }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.branch_name.outputs.branch }}
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.12.2
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run linter
+        run: npm run lint --no-color
+
+      - name: Run tests
+        if: always()
+        run: npm run test:coverage
+
+      - name: Upload coverage reports to Codecov
+        if: always()
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
