@@ -1,6 +1,7 @@
 # Passkey Authenticator Name Finder
 
 [![npm version](https://badge.fury.io/js/passkey-authenticator-aaguids.svg)](https://badge.fury.io/js/passkey-authenticator-aaguids)
+[![codecov](https://codecov.io/gh/tarekbeb/passkey-authenticator-aaguids/branch/master/graph/badge.svg?token=7839BI81E0)](https://codecov.io/gh/tarekbeb/passkey-authenticator-aaguids)
 
 This package provides a simple utility function to look up the likely human-readable name of a passkey provider (authenticator) given its AAGUID (Authenticator Attestation Globally Unique Identifier).
 
