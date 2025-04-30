@@ -1,4 +1,4 @@
-import * as authenticatorsList from "./authenticator-names.json";
+import { authenticatorNamesList } from "./authenticator-names";
 /**
  * Converts a Base64URL string to a standard Base64 string.
  * @param {string} base64url - The Base64URL encoded string.
@@ -70,7 +70,7 @@ export function extractAaguid(authenticatorDataBase64Url: string): Uint8Array {
 }
 
 export function findAuthenticatorById({ authenticatorId }: { authenticatorId: string }) {
-  const foundAuthenticator = authenticatorsList.find(
+  const foundAuthenticator = authenticatorNamesList.find(
     (authenticator) => authenticator.id === authenticatorId
   );
 

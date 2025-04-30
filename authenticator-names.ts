@@ -1,4 +1,4 @@
-[
+export const authenticatorNamesList = [
   {
     "id": "fcb1bcb4-f370-078c-6993-bc24d0ae3fbe",
     "name": "Ledger Nano X FIDO2 Authenticator"
@@ -1035,4 +1035,4 @@
     "id": "a10c6dd9-465e-4226-8198-c7c44b91c555",
     "name": "Kaspersky Password Manager"
   }
-]
+];

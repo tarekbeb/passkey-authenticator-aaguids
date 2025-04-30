@@ -3,7 +3,13 @@ import {
   getAaguid,
   base64UrlToBase64,
   base64ToUint8Array,
+  findAuthenticatorById,
+  getAuthenticator,
+  getAuthenticatorId,
+  getAuthenticatorName,
 } from './index'
+
+import { authenticatorNamesList } from './authenticator-names'
 
 const authenticatorDataBase64Url =
   "SZYN5YgOjGh0NBcPZHZgW4_krrmihjLHmVzzuoMdl2NdAAAAAPv8MAcVTk7MjAtuAgVX170AFBUCgIutOmnd-P3TTsakYoMM292opQECAyYgASFYIGTgM0IiDgO9AqTMSMT1Tdh1sHiL99qEZJ4cdk8vJAyDIlggolBgLLxO9I2q9GuYsa8kBThr8-iXpiO4mL2z_73-Th4";
@@ -58,12 +64,7 @@ describe("extractAaguid", () => {
     const aaguidBytesAuth = extractAaguid(authenticatorDataBase64Url);
     const authenticatorId = getAaguid(aaguidBytesAuth);
 
-    const authenticatorsList = [
-      { id: "fbfc3007-154e-4ecc-8c0b-6e020557d7bd", name: "iCloud Keychain" },
-      { id: "12345678-90ab-cdef-0123-456789abcdef", name: "Test Authenticator" },
-    ];
-
-    const foundAuthenticator = authenticatorsList.find(
+    const foundAuthenticator = authenticatorNamesList.find(
       (authenticator) => authenticator.id === authenticatorId
     );
 
@@ -71,5 +72,68 @@ describe("extractAaguid", () => {
       id: "fbfc3007-154e-4ecc-8c0b-6e020557d7bd",
       name: "iCloud Keychain",
     });
+  });
+});
+
+describe("findAuthenticatorById", () => {
+  it("should find an authenticator by its ID", () => {
+    const foundAuthenticator = findAuthenticatorById({ authenticatorId: "fbfc3007-154e-4ecc-8c0b-6e020557d7bd" });
+
+    expect(foundAuthenticator).toEqual({
+      id: "fbfc3007-154e-4ecc-8c0b-6e020557d7bd",
+      name: "iCloud Keychain",
+    });
+  });
+
+  it("should return undefined for an unknown ID", () => {
+    const authenticatorId = "unknown-id";
+    const foundAuthenticator = findAuthenticatorById({ authenticatorId });
+
+    expect(foundAuthenticator).toBeUndefined();
+  });
+});
+
+describe("getAuthenticator", () => {
+  it("should return the authenticator object for valid authenticatorData", () => {
+    const authenticator = getAuthenticator({ authenticatorData: authenticatorDataBase64Url });
+
+    expect(authenticator).toEqual({
+      id: "fbfc3007-154e-4ecc-8c0b-6e020557d7bd",
+      name: "iCloud Keychain",
+    });
+  });
+
+  it("should return undefined for invalid authenticatorData", () => {
+    expect(() => getAuthenticator({ authenticatorData: "invalid_data" })).toThrow(
+      "AuthenticatorData is too short to contain flags."
+    );
+  });
+});
+
+describe("getAuthenticatorName", () => {
+  it("should return the name of the authenticator for valid authenticatorData", () => {
+    const authenticatorName = getAuthenticatorName({ authenticatorData: authenticatorDataBase64Url });
+
+    expect(authenticatorName).toBe("iCloud Keychain");
+  });
+
+  it("should return undefined for invalid authenticatorData", () => {
+    expect(() => getAuthenticatorName({ authenticatorData: "invalid_data" })).toThrow(
+      "AuthenticatorData is too short to contain flags."
+    );
+  });
+});
+
+describe("getAuthenticatorId", () => {
+  it("should return the ID of the authenticator for valid authenticatorData", () => {
+    const authenticatorId = getAuthenticatorId({ authenticatorData: authenticatorDataBase64Url });
+
+    expect(authenticatorId).toBe("fbfc3007-154e-4ecc-8c0b-6e020557d7bd");
+  });
+
+  it("should return undefined for invalid authenticatorData", () => {
+    expect(() => getAuthenticatorId({ authenticatorData: "invalid_data" })).toThrow(
+      "AuthenticatorData is too short to contain flags."
+    );
   });
 });
