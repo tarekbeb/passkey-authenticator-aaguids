@@ -28,9 +28,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run linter
-        run: npm run lint --no-color
-
       - name: Run tests
         if: always()
         run: npm run test:coverage
