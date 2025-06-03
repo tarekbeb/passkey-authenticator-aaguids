@@ -23,7 +23,7 @@ This package directly utilizes the data and inherits the disclaimer from the `pa
 ## Installation
 
 ```bash
-npm install your-package-name
+npm install passkey-authenticator-aaguids
 ```
 
 ## How to use
