@@ -1,4 +1,3 @@
-import { authenticatorNamesList } from "./authenticator-names";
 /**
  * Converts a Base64URL string to a standard Base64 string.
  * @param {string} base64url - The Base64URL encoded string.
@@ -67,33 +66,4 @@ export function extractAaguid(authenticatorDataBase64Url: string): Uint8Array {
   }
   // Extract the AAGUID (16 bytes starting at byte 37)
   return authenticatorData.slice(37, 53);
-}
-
-export function findAuthenticatorById({ authenticatorId }: { authenticatorId: string }) {
-  const foundAuthenticator = authenticatorNamesList.find(
-    (authenticator) => authenticator.id === authenticatorId
-  );
-
-  return foundAuthenticator;
-}
-
-export function getAuthenticator({ authenticatorData }: { authenticatorData: string }) {
-  const aaguidBytesAuth = extractAaguid(authenticatorData);
-  const authenticatorId = getAaguid(aaguidBytesAuth);
-
-  return findAuthenticatorById({ authenticatorId });
-}
-
-export function getAuthenticatorName({ authenticatorData }: { authenticatorData: string }) {
-  const aaguidBytesAuth = extractAaguid(authenticatorData);
-  const authenticatorId = getAaguid(aaguidBytesAuth);
-
-  return findAuthenticatorById({ authenticatorId })?.name;
-}
-
-export function getAuthenticatorId({ authenticatorData }: { authenticatorData: string }) {
-  const aaguidBytesAuth = extractAaguid(authenticatorData);
-  const authenticatorId = getAaguid(aaguidBytesAuth);
-
-  return findAuthenticatorById({ authenticatorId })?.id;
 }
