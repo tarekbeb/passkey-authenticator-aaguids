@@ -20,5 +20,13 @@
     "target": "es2015", // Ensure ES2015 or higher
     "downlevelIteration": true, // Optional: Enable downlevel iteration for older targets
     "resolveJsonModule": true, // Optional: Allow importing JSON files
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "coverage",
+    "dist",
+  ],
+  "include": [
+    "src/**/*.ts"
+  ]
 }

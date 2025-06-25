@@ -1,6 +1,6 @@
 import { atob } from "js-base64";
 
-import { authenticatorNamesList } from "./authenticator-names";
+import { authenticatorNamesList } from "../authenticator-names";
 /**
  * Converts a Base64URL string to a standard Base64 string.
  * @param {string} base64url - The Base64URL encoded string.
@@ -100,4 +100,4 @@ export function getAuthenticatorId({ authenticatorData }: { authenticatorData: s
   return findAuthenticatorById({ authenticatorId })?.id;
 }
 
-export * from "./authenticator-names";
+export * from "../authenticator-names";

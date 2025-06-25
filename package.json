@@ -6,6 +6,26 @@
   "module": "./dist/index.esm.js",
   "commonjs": "./dist/index.cjs.js",
   "react-native": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "react-native": "./dist/index.js",
+        "default": "./dist/index.esm.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs.js"
+      }
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "build": "rollup --config rollup.config.js --sourcemap --validate --bundleConfigAsCjs",
     "build:prod": "npm run build --compact --environment production",
