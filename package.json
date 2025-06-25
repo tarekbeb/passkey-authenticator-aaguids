@@ -27,7 +27,8 @@
     "node": ">=14"
   },
   "scripts": {
-    "build": "rollup --config rollup.config.js --sourcemap --validate --bundleConfigAsCjs",
+    "prebuild": "rimraf dist",
+    "build": "npm run prebuild && rollup --config rollup.config.js --sourcemap --validate --bundleConfigAsCjs",
     "build:prod": "npm run build --compact --environment production",
     "build:dev": "rollup --config --bundleConfigAsCjs --watch",
     "test": "NODE_ENV=test npm run test:all",
