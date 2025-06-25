@@ -1,8 +1,8 @@
 const { extractAaguid, getAaguid } = require("./dist/bundle.js");
-const authenticatorsList = require("./authenticator-names.js");
+const { authenticatorsList } = require("./dist/index.js");
 
 const authDataAuth =
-  "SZYN5YgOjGh0NBcPZHZgW4_krrmihjLHmVzzuoMdl2NdAAAAAPv8MAcVTk7MjAtuAgVX170AFBUCgIutOmnd-P3TTsakYoMM292opQECAyYgASFYIGTgM0IiDgO9AqTMSMT1Tdh1sHiL99qEZJ4cdk8vJAyDIlggolBgLLxO9I2q9GuYsa8kBThr8-iXpiO4mL2z_73-Th4";
+  "3-2yEIaP6m1RE1Mo_WZUI0wkHYpPsaRw7IsqFmSK1wtdAAAAAPv8MAcVTk7MjAtuAgVX170AFG0WDlLN-HNvP3T2tqUUBPmZJKRApQECAyYgASFYINN6VjykCrOClgNdlfsWc0ENOiltsWdl0maNSe--c21uIlgg6XuqykkVZhrYF9wW1PPaMp30Ozufs4vgspe1kze9uCk";
 
 const aaguidBytesAuth = extractAaguid(authDataAuth);
 const authenticatorId = getAaguid(aaguidBytesAuth);

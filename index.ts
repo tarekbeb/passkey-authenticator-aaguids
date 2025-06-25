@@ -1,10 +1,12 @@
+import { atob } from "js-base64";
+
 import { authenticatorNamesList } from "./authenticator-names";
 /**
  * Converts a Base64URL string to a standard Base64 string.
  * @param {string} base64url - The Base64URL encoded string.
  * @returns {string} The standard Base64 encoded string.
  */
-export function base64UrlToBase64(base64url: string) {
+function base64UrlToBase64(base64url: string) {
   let base64 = base64url.replace(/-/g, "+").replace(/_/g, "/");
   // Add padding if necessary
   const padding = base64.length % 4;
@@ -21,7 +23,7 @@ export function base64UrlToBase64(base64url: string) {
  * @param {string} base64 - The standard Base64 encoded string.
  * @returns {Uint8Array} The decoded data as a Uint8Array.
  */
-export function base64ToUint8Array(base64: string) {
+function base64ToUint8Array(base64: string) {
   try {
     const binaryString = atob(base64);
     const len = binaryString.length;
@@ -41,7 +43,7 @@ export function base64ToUint8Array(base64: string) {
  * @param {Uint8Array} aaguid - The 16 bytes representing the AAGUID.
  * @returns {string} The formatted UUID string.
  */
-export function getAaguid(aaguid: Uint8Array): string {
+function getAaguid(aaguid: Uint8Array): string {
   if (aaguid.length !== 16) {
     throw new Error("AAGUID must be 16 bytes.");
   }
@@ -60,7 +62,7 @@ export function getAaguid(aaguid: Uint8Array): string {
  * @param {string} authenticatorDataBase64Url - The Base64URL encoded authenticatorData.
  * @returns {Uint8Array} The AAGUID as a Uint8Array.
  */
-export function extractAaguid(authenticatorDataBase64Url: string): Uint8Array {
+function extractAaguid(authenticatorDataBase64Url: string): Uint8Array {
   const authenticatorData = base64ToUint8Array(base64UrlToBase64(authenticatorDataBase64Url));
   if (authenticatorData.length < 37) {
     throw new Error("AuthenticatorData is too short to contain flags.");
@@ -97,3 +99,5 @@ export function getAuthenticatorId({ authenticatorData }: { authenticatorData: s
 
   return findAuthenticatorById({ authenticatorId })?.id;
 }
+
+export * from "./authenticator-names";
